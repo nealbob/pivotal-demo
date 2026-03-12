@@ -1,2 +1,3 @@
-*.sqlite
 *:Zone.Identifier
+.ipynb_checkpoints/
+pivotal_autocomplete.json
