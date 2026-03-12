@@ -7,8 +7,5 @@ dependencies:
   - jupyterlab>=4.0,<5
   - pip
   - pip:
-      - great-tables
-      - matplotlib
-      - sqlalchemy
       - git+https://github.com/nealbob/pivotal-py.git
       - git+https://github.com/nealbob/pivotal-py.git#subdirectory=editors/jupyterlab
