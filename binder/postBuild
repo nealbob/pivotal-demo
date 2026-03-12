@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+wget -q --show-progress "https://zenodo.org/records/18975717/files/database.sqlite" -O database.sqlite
