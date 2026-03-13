@@ -1,0 +1,172 @@
+{
+  "name": "football_demo",
+  "resources": [
+    {
+      "name": "Match",
+      "path": "data/Match.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer"
+          },
+          {
+            "name": "country_id",
+            "type": "integer"
+          },
+          {
+            "name": "league_id",
+            "type": "integer"
+          },
+          {
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "name": "stage",
+            "type": "integer"
+          },
+          {
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "name": "match_api_id",
+            "type": "integer"
+          },
+          {
+            "name": "home_team_api_id",
+            "type": "integer"
+          },
+          {
+            "name": "away_team_api_id",
+            "type": "integer"
+          },
+          {
+            "name": "home_team_goal",
+            "type": "integer"
+          },
+          {
+            "name": "away_team_goal",
+            "type": "integer"
+          },
+          {
+            "name": "League",
+            "type": "string"
+          },
+          {
+            "name": "season_clean",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "League",
+      "path": "data/League.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer"
+          },
+          {
+            "name": "country_id",
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "league_names",
+      "path": "data/league_names.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "league_id",
+            "type": "integer"
+          },
+          {
+            "name": "League",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "goal_summary",
+      "path": "data/goal_summary.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "season_clean",
+            "type": "string"
+          },
+          {
+            "name": "England Premier League",
+            "type": "number"
+          },
+          {
+            "name": "Germany 1. Bundesliga",
+            "type": "number"
+          },
+          {
+            "name": "Italy Serie A",
+            "type": "number"
+          },
+          {
+            "name": "Spain LIGA BBVA",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "name": "goal_chart",
+      "path": "charts/goal_chart.png",
+      "mediatype": "image/png"
+    },
+    {
+      "name": "goal_chart_data",
+      "path": "charts/goal_chart.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "season_clean",
+            "type": "string"
+          },
+          {
+            "name": "England Premier League",
+            "type": "number"
+          },
+          {
+            "name": "Germany 1. Bundesliga",
+            "type": "number"
+          },
+          {
+            "name": "Italy Serie A",
+            "type": "number"
+          },
+          {
+            "name": "Spain LIGA BBVA",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "name": "goal_table",
+      "path": "tables/goal_table.html",
+      "mediatype": "text/html"
+    }
+  ]
+}
