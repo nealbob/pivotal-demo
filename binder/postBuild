@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+
+# Disable JupyterLab simple mode (single-document) by default
+mkdir -p "${NB_PYTHON_PREFIX}/share/jupyter/lab/settings"
+cp "${REPO_DIR}/binder/overrides.json" "${NB_PYTHON_PREFIX}/share/jupyter/lab/settings/overrides.json"
