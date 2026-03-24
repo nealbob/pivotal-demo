@@ -58,6 +58,10 @@
           {
             "name": "season_clean",
             "type": "string"
+          },
+          {
+            "name": "total_goals",
+            "type": "integer"
           }
         ]
       }
@@ -130,6 +134,102 @@
       }
     },
     {
+      "name": "goal_chart2_df",
+      "path": "data/goal_chart2_df.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "season_clean",
+            "type": "string"
+          },
+          {
+            "name": "England Premier League",
+            "type": "number"
+          },
+          {
+            "name": "Germany 1. Bundesliga",
+            "type": "number"
+          },
+          {
+            "name": "Italy Serie A",
+            "type": "number"
+          },
+          {
+            "name": "Spain LIGA BBVA",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Team",
+      "path": "data/Team.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer"
+          },
+          {
+            "name": "team_api_id",
+            "type": "integer"
+          },
+          {
+            "name": "team_fifa_api_id",
+            "type": "number"
+          },
+          {
+            "name": "team_long_name",
+            "type": "string"
+          },
+          {
+            "name": "team_short_name",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "win_summary",
+      "path": "data/win_summary.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "Team",
+            "type": "string"
+          },
+          {
+            "name": "League",
+            "type": "string"
+          },
+          {
+            "name": "Wins",
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ha_match",
+      "path": "data/ha_match.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "form",
+            "type": "string"
+          },
+          {
+            "name": "GD",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
       "name": "goal_chart",
       "path": "charts/goal_chart.png",
       "mediatype": "image/png"
@@ -158,6 +258,88 @@
           },
           {
             "name": "Spain LIGA BBVA",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "name": "goal_chart2",
+      "path": "charts/goal_chart2.png",
+      "mediatype": "image/png"
+    },
+    {
+      "name": "goal_chart2_data",
+      "path": "charts/goal_chart2.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "season_clean",
+            "type": "string"
+          },
+          {
+            "name": "England Premier League",
+            "type": "number"
+          },
+          {
+            "name": "Germany 1. Bundesliga",
+            "type": "number"
+          },
+          {
+            "name": "Italy Serie A",
+            "type": "number"
+          },
+          {
+            "name": "Spain LIGA BBVA",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "name": "win_plot",
+      "path": "charts/win_plot.png",
+      "mediatype": "image/png"
+    },
+    {
+      "name": "win_plot_data",
+      "path": "charts/win_plot.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "Team",
+            "type": "string"
+          },
+          {
+            "name": "League",
+            "type": "string"
+          },
+          {
+            "name": "Wins",
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "name": "form_chart",
+      "path": "charts/form_chart.png",
+      "mediatype": "image/png"
+    },
+    {
+      "name": "form_chart_data",
+      "path": "charts/form_chart.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "form",
+            "type": "string"
+          },
+          {
+            "name": "GD",
             "type": "number"
           }
         ]
