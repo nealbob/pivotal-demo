@@ -5,7 +5,7 @@ import pandas as pd
 # [Cell 1]
 import pivotal
 %pivotal_set canvas=a4, viewer_font=0.9
-#pivotal_set backend=duckdb   # Use DuckDB/SQL engine instead of Pandas
+#%pivotal_set backend=duckdb
 
 # [Cell 2]
 big4 = ["England Premier League", "Spain LIGA BBVA", "Germany 1. Bundesliga", "Italy Serie A"]
@@ -14,7 +14,7 @@ big4 = ["England Premier League", "Spain LIGA BBVA", "Germany 1. Bundesliga", "I
 import sqlite3 as _sqlite3
 with _sqlite3.connect('database.sqlite') as _conn:
     Match = pd.read_sql('SELECT * FROM Match', _conn)
-_kw_cols = [c for c in Match.columns if c.lower() in frozenset({'rows', 'true', 'left', 'lead', 'table', 'in', 'std', 'include', 'outer', 'cols', 'right', 'lag', 'exclude', 'and', 'agg', 'on', 'not', 'avg', 'none', 'filter', 'sum', 'python', 'sort', 'cummin', 'cumsum', 'pivot', 'min', 'max', 'desc', 'load', 'fillna', 'median', 'mean', 'distinct', 'asc', 'apply', 'rank', 'order', 'unpivot', 'from', 'inner', 'select', 'startswith', 'where', 'merge', 'concat', 'drop', 'plot', 'as', 'false', 'dropna', 'group', 'count', 'rolling', 'contains', 'save', 'cummax', 'rename', 'between', 'or', 'all', 'by', 'cummean', 'endswith'})]
+_kw_cols = [c for c in Match.columns if c.lower() in frozenset({'agg', 'between', 'false', 'mean', 'select', 'include', 'endswith', 'rows', 'sum', 'none', 'table', 'contains', 'startswith', 'max', 'avg', 'asc', 'cummax', 'in', 'load', 'by', 'cummin', 'std', 'concat', 'and', 'from', 'right', 'unpivot', 'fillna', 'dropna', 'drop', 'rank', 'cols', 'lag', 'as', 'where', 'lead', 'filter', 'python', 'order', 'pivot', 'desc', 'on', 'true', 'save', 'all', 'count', 'plot', 'exclude', 'inner', 'merge', 'min', 'left', 'apply', 'or', 'cumsum', 'median', 'sort', 'rename', 'group', 'cummean', 'rolling', 'outer', 'not', 'distinct'})]
 if _kw_cols:
     import warnings
     warnings.warn(
@@ -28,7 +28,7 @@ __table_name__ = 'Match'
 import sqlite3 as _sqlite3
 with _sqlite3.connect('database.sqlite') as _conn:
     League = pd.read_sql('SELECT * FROM League', _conn)
-_kw_cols = [c for c in League.columns if c.lower() in frozenset({'rows', 'true', 'left', 'lead', 'table', 'in', 'std', 'include', 'outer', 'cols', 'right', 'lag', 'exclude', 'and', 'agg', 'on', 'not', 'avg', 'none', 'filter', 'sum', 'python', 'sort', 'cummin', 'cumsum', 'pivot', 'min', 'max', 'desc', 'load', 'fillna', 'median', 'mean', 'distinct', 'asc', 'apply', 'rank', 'order', 'unpivot', 'from', 'inner', 'select', 'startswith', 'where', 'merge', 'concat', 'drop', 'plot', 'as', 'false', 'dropna', 'group', 'count', 'rolling', 'contains', 'save', 'cummax', 'rename', 'between', 'or', 'all', 'by', 'cummean', 'endswith'})]
+_kw_cols = [c for c in League.columns if c.lower() in frozenset({'agg', 'between', 'false', 'mean', 'select', 'include', 'endswith', 'rows', 'sum', 'none', 'table', 'contains', 'startswith', 'max', 'avg', 'asc', 'cummax', 'in', 'load', 'by', 'cummin', 'std', 'concat', 'and', 'from', 'right', 'unpivot', 'fillna', 'dropna', 'drop', 'rank', 'cols', 'lag', 'as', 'where', 'lead', 'filter', 'python', 'order', 'pivot', 'desc', 'on', 'true', 'save', 'all', 'count', 'plot', 'exclude', 'inner', 'merge', 'min', 'left', 'apply', 'or', 'cumsum', 'median', 'sort', 'rename', 'group', 'cummean', 'rolling', 'outer', 'not', 'distinct'})]
 if _kw_cols:
     import warnings
     warnings.warn(
@@ -63,7 +63,7 @@ Match = Match.merge(league_names, on=['league_id'], how='inner', )
 
 Match['season_clean'] = Match['season'].str[:4] + '-' + Match['season'].str[-2:]
 
-Match['total_goals'] = Match.eval('home_team_goal + away_team_goal')
+Match['total_goals'] = Match['home_team_goal'] + Match['away_team_goal']
 
 # [Cell 5] pivotal → pandas
 if 'Match' not in locals() and 'Match' not in globals(): raise NameError("name 'Match' is not defined")
@@ -135,7 +135,7 @@ _ipyd(_ipyHTML(_gt_viewer_html))
 import sqlite3 as _sqlite3
 with _sqlite3.connect('database.sqlite') as _conn:
     Team = pd.read_sql('SELECT * FROM Team', _conn)
-_kw_cols = [c for c in Team.columns if c.lower() in frozenset({'rows', 'true', 'left', 'lead', 'table', 'in', 'std', 'include', 'outer', 'cols', 'right', 'lag', 'exclude', 'and', 'agg', 'on', 'not', 'avg', 'none', 'filter', 'sum', 'python', 'sort', 'cummin', 'cumsum', 'pivot', 'min', 'max', 'desc', 'load', 'fillna', 'median', 'mean', 'distinct', 'asc', 'apply', 'rank', 'order', 'unpivot', 'from', 'inner', 'select', 'startswith', 'where', 'merge', 'concat', 'drop', 'plot', 'as', 'false', 'dropna', 'group', 'count', 'rolling', 'contains', 'save', 'cummax', 'rename', 'between', 'or', 'all', 'by', 'cummean', 'endswith'})]
+_kw_cols = [c for c in Team.columns if c.lower() in frozenset({'agg', 'between', 'false', 'mean', 'select', 'include', 'endswith', 'rows', 'sum', 'none', 'table', 'contains', 'startswith', 'max', 'avg', 'asc', 'cummax', 'in', 'load', 'by', 'cummin', 'std', 'concat', 'and', 'from', 'right', 'unpivot', 'fillna', 'dropna', 'drop', 'rank', 'cols', 'lag', 'as', 'where', 'lead', 'filter', 'python', 'order', 'pivot', 'desc', 'on', 'true', 'save', 'all', 'count', 'plot', 'exclude', 'inner', 'merge', 'min', 'left', 'apply', 'or', 'cumsum', 'median', 'sort', 'rename', 'group', 'cummean', 'rolling', 'outer', 'not', 'distinct'})]
 if _kw_cols:
     import warnings
     warnings.warn(
@@ -173,6 +173,12 @@ win_summary = win_summary.sort_values(['Wins'], ascending=[True])
 win_summary = win_summary.query('Wins > 50')
 
 # [Cell 9] pivotal → pandas
+if 'win_summary' not in locals() and 'win_summary' not in globals(): raise NameError("name 'win_summary' is not defined")
+if not isinstance(win_summary, pd.DataFrame): raise TypeError('win_summary is not a pandas DataFrame')
+#__pivotal__
+__table_name__ = 'win_summary'
+#__pivotal__
+
 import matplotlib.pyplot as plt
 _by_vals = win_summary['League'].unique()
 _n_cols = 2
