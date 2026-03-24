@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
-# Disable JupyterLab simple mode (single-document) by default
+# Disable JupyterLab simple mode (single-document) by default.
+# Write directly to user settings — more reliable than overrides.json
+# as it doesn't depend on the plugin ID being resolved at build time.
+mkdir -p "/home/jovyan/.jupyter/lab/user-settings/@jupyterlab/application-extension/"
+cat > "/home/jovyan/.jupyter/lab/user-settings/@jupyterlab/application-extension/shell.jupyterlab-settings" << 'EOF'
+{
+    "mode": "multiple-document"
+}
+EOF
+
+# Also write overrides.json as a fallback
 mkdir -p "${NB_PYTHON_PREFIX}/share/jupyter/lab/settings"
 cp "${REPO_DIR}/binder/overrides.json" "${NB_PYTHON_PREFIX}/share/jupyter/lab/settings/overrides.json"
