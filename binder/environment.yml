@@ -4,8 +4,8 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-  - jupyterlab>=4.0,<5
   - pip
   - pip:
-      - "pivotal @ git+https://github.com/nealbob/pivotal-py.git@a114f82543527cc52ef6122cefbb8688f594963c"
-      - git+https://github.com/nealbob/pivotal-py.git@a114f82543527cc52ef6122cefbb8688f594963c#subdirectory=editors/jupyterlab
+      - jupyterlab>=4.5.4,<5
+      - "pivotal @ git+https://github.com/nealbob/pivotal-py.git@e08cd86c5439f233648fb947d1129bf4a53cd354"
+      - git+https://github.com/nealbob/pivotal-py.git@e08cd86c5439f233648fb947d1129bf4a53cd354#subdirectory=editors/jupyterlab
