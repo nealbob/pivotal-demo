@@ -219,11 +219,36 @@
       "schema": {
         "fields": [
           {
-            "name": "form",
+            "name": "team_id",
+            "type": "integer"
+          },
+          {
+            "name": "date",
             "type": "string"
           },
           {
             "name": "GD",
+            "type": "integer"
+          },
+          {
+            "name": "pastgame_GD",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "name": "fitted",
+      "path": "data/fitted.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "pastgame_GD",
+            "type": "number"
+          },
+          {
+            "name": "Fitted",
             "type": "number"
           }
         ]
@@ -324,22 +349,30 @@
       }
     },
     {
-      "name": "form_chart",
-      "path": "charts/form_chart.png",
+      "name": "form_model_chart",
+      "path": "charts/form_model_chart.png",
       "mediatype": "image/png"
     },
     {
-      "name": "form_chart_data",
-      "path": "charts/form_chart.csv",
+      "name": "form_model_chart_data",
+      "path": "charts/form_model_chart.csv",
       "mediatype": "text/csv",
       "schema": {
         "fields": [
           {
-            "name": "form",
+            "name": "team_id",
+            "type": "integer"
+          },
+          {
+            "name": "date",
             "type": "string"
           },
           {
             "name": "GD",
+            "type": "integer"
+          },
+          {
+            "name": "pastgame_GD",
             "type": "number"
           }
         ]
