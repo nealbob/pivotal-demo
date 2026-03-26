@@ -7,5 +7,5 @@ dependencies:
   - jupyterlab>=4.0,<5
   - pip
   - pip:
-      - "pivotal[all] @ git+https://github.com/nealbob/pivotal-py.git@0059dc0196963242f55301df63e286e2fcae8d70"
-      - git+https://github.com/nealbob/pivotal-py.git@0059dc0196963242f55301df63e286e2fcae8d70#subdirectory=editors/jupyterlab
+      - "pivotal @ git+https://github.com/nealbob/pivotal-py.git@a114f82543527cc52ef6122cefbb8688f594963c"
+      - git+https://github.com/nealbob/pivotal-py.git@a114f82543527cc52ef6122cefbb8688f594963c#subdirectory=editors/jupyterlab
