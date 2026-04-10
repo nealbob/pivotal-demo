@@ -6,71 +6,117 @@ import pandas as pd
 import pivotal
 %pivotal_set canvas=a4, viewer_font=0.9, backend=pandas
 
-# [Cell 2]
+# [Cell 2] pivotal → pandas
+import sqlite3 as _sqlite3
+with _sqlite3.connect('database.sqlite') as _conn:
+    match = pd.read_sql('SELECT * FROM Match', _conn)
+    league = pd.read_sql('SELECT * FROM League', _conn)
+    team = pd.read_sql('SELECT * FROM Team', _conn)
+def _pvt_sanitise(cols):
+    import re as _re
+    seen, renamed, new = {}, {}, []
+    for c in cols:
+        s = str(c)
+        n = _re.sub(r'_+', '_', _re.sub(r'[^a-zA-Z0-9_]', '_', s)).strip('_') or 'col'
+        if n[0].isdigit(): n = '_' + n
+        cnt = seen.get(n, 0); seen[n] = cnt + 1
+        if cnt: n = f'{n}_{cnt}'
+        new.append(n)
+        if n != s: renamed[s] = n
+    return new, renamed
+_pvt_new_cols, _pvt_renamed = _pvt_sanitise(match.columns.tolist())
+match.columns = _pvt_new_cols
+if _pvt_renamed:
+    import warnings
+    warnings.warn(f"[Pivotal] Column(s) renamed in 'match': {_pvt_renamed}", UserWarning, stacklevel=2)
+_kw_cols = [c for c in match.columns if c.lower() in frozenset({'apply', 'rename', 'avg', 'agg', 'min', 'merge', 'plot', 'none', 'concat', 'distinct', 'max', 'rows', 'pivot', 'wavg', 'exclude', 'desc', 'group', 'all', 'as', 'cummax', 'by', 'std', 'between', 'false', 'asc', 'with', 'select', 'and', 'drop', 'dropna', 'cast', 'cummin', 'delete', 'true', 'lag', 'cols', 'order', 'unpivot', 'cumsum', 'load', 'cummean', 'inner', 'python', 'intersect', 'on', 'right', 'startswith', 'from', 'not', 'sum', 'count', 'where', 'left', 'save', 'endswith', 'fillna', 'mean', 'filter', 'outer', 'rank', 'wmean', 'or', 'table', 'in', 'include', 'sort', 'rolling', 'lead', 'median', 'contains'})]
+if _kw_cols:
+    import warnings
+    warnings.warn(f"Table 'match' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
+#__pivotal__
+__table_name__ = 'match'
+#__pivotal__
+def _pvt_sanitise(cols):
+    import re as _re
+    seen, renamed, new = {}, {}, []
+    for c in cols:
+        s = str(c)
+        n = _re.sub(r'_+', '_', _re.sub(r'[^a-zA-Z0-9_]', '_', s)).strip('_') or 'col'
+        if n[0].isdigit(): n = '_' + n
+        cnt = seen.get(n, 0); seen[n] = cnt + 1
+        if cnt: n = f'{n}_{cnt}'
+        new.append(n)
+        if n != s: renamed[s] = n
+    return new, renamed
+_pvt_new_cols, _pvt_renamed = _pvt_sanitise(league.columns.tolist())
+league.columns = _pvt_new_cols
+if _pvt_renamed:
+    import warnings
+    warnings.warn(f"[Pivotal] Column(s) renamed in 'league': {_pvt_renamed}", UserWarning, stacklevel=2)
+_kw_cols = [c for c in league.columns if c.lower() in frozenset({'apply', 'rename', 'avg', 'agg', 'min', 'merge', 'plot', 'none', 'concat', 'distinct', 'max', 'rows', 'pivot', 'wavg', 'exclude', 'desc', 'group', 'all', 'as', 'cummax', 'by', 'std', 'between', 'false', 'asc', 'with', 'select', 'and', 'drop', 'dropna', 'cast', 'cummin', 'delete', 'true', 'lag', 'cols', 'order', 'unpivot', 'cumsum', 'load', 'cummean', 'inner', 'python', 'intersect', 'on', 'right', 'startswith', 'from', 'not', 'sum', 'count', 'where', 'left', 'save', 'endswith', 'fillna', 'mean', 'filter', 'outer', 'rank', 'wmean', 'or', 'table', 'in', 'include', 'sort', 'rolling', 'lead', 'median', 'contains'})]
+if _kw_cols:
+    import warnings
+    warnings.warn(f"Table 'league' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
+#__pivotal__
+__table_name__ = 'league'
+#__pivotal__
+def _pvt_sanitise(cols):
+    import re as _re
+    seen, renamed, new = {}, {}, []
+    for c in cols:
+        s = str(c)
+        n = _re.sub(r'_+', '_', _re.sub(r'[^a-zA-Z0-9_]', '_', s)).strip('_') or 'col'
+        if n[0].isdigit(): n = '_' + n
+        cnt = seen.get(n, 0); seen[n] = cnt + 1
+        if cnt: n = f'{n}_{cnt}'
+        new.append(n)
+        if n != s: renamed[s] = n
+    return new, renamed
+_pvt_new_cols, _pvt_renamed = _pvt_sanitise(team.columns.tolist())
+team.columns = _pvt_new_cols
+if _pvt_renamed:
+    import warnings
+    warnings.warn(f"[Pivotal] Column(s) renamed in 'team': {_pvt_renamed}", UserWarning, stacklevel=2)
+_kw_cols = [c for c in team.columns if c.lower() in frozenset({'apply', 'rename', 'avg', 'agg', 'min', 'merge', 'plot', 'none', 'concat', 'distinct', 'max', 'rows', 'pivot', 'wavg', 'exclude', 'desc', 'group', 'all', 'as', 'cummax', 'by', 'std', 'between', 'false', 'asc', 'with', 'select', 'and', 'drop', 'dropna', 'cast', 'cummin', 'delete', 'true', 'lag', 'cols', 'order', 'unpivot', 'cumsum', 'load', 'cummean', 'inner', 'python', 'intersect', 'on', 'right', 'startswith', 'from', 'not', 'sum', 'count', 'where', 'left', 'save', 'endswith', 'fillna', 'mean', 'filter', 'outer', 'rank', 'wmean', 'or', 'table', 'in', 'include', 'sort', 'rolling', 'lead', 'median', 'contains'})]
+if _kw_cols:
+    import warnings
+    warnings.warn(f"Table 'team' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
+#__pivotal__
+__table_name__ = 'team'
+#__pivotal__
+
+# [Cell 3]
 big4 = ["England Premier League", "Spain LIGA BBVA", "Germany 1. Bundesliga", "Italy Serie A"]
 
-# [Cell 3] pivotal → pandas
-import sqlite3 as _sqlite3
-with _sqlite3.connect('database.sqlite') as _conn:
-    Match = pd.read_sql('SELECT * FROM Match', _conn)
-_kw_cols = [c for c in Match.columns if c.lower() in frozenset({'avg', 'all', 'exclude', 'drop', 'rows', 'merge', 'rename', 'filter', 'table', 'agg', 'on', 'endswith', 'false', 'save', 'median', 'where', 'unpivot', 'load', 'left', 'sum', 'rolling', 'and', 'dropna', 'select', 'max', 'or', 'true', 'contains', 'cummax', 'fillna', 'cummean', 'sort', 'from', 'order', 'apply', 'in', 'group', 'min', 'concat', 'include', 'cumsum', 'cummin', 'std', 'pivot', 'none', 'asc', 'between', 'desc', 'outer', 'startswith', 'lead', 'as', 'mean', 'lag', 'plot', 'count', 'cols', 'inner', 'by', 'distinct', 'python', 'rank', 'right', 'not'})]
-if _kw_cols:
-    import warnings
-    warnings.warn(
-        f"Table 'Match' has columns that are Pivotal keywords: {_kw_cols}. "
-        "Use a 'python' block to reference them.",
-        UserWarning, stacklevel=2)
-#__pivotal__
-__table_name__ = 'Match'
-#__pivotal__
-
-import sqlite3 as _sqlite3
-with _sqlite3.connect('database.sqlite') as _conn:
-    League = pd.read_sql('SELECT * FROM League', _conn)
-_kw_cols = [c for c in League.columns if c.lower() in frozenset({'avg', 'all', 'exclude', 'drop', 'rows', 'merge', 'rename', 'filter', 'table', 'agg', 'on', 'endswith', 'false', 'save', 'median', 'where', 'unpivot', 'load', 'left', 'sum', 'rolling', 'and', 'dropna', 'select', 'max', 'or', 'true', 'contains', 'cummax', 'fillna', 'cummean', 'sort', 'from', 'order', 'apply', 'in', 'group', 'min', 'concat', 'include', 'cumsum', 'cummin', 'std', 'pivot', 'none', 'asc', 'between', 'desc', 'outer', 'startswith', 'lead', 'as', 'mean', 'lag', 'plot', 'count', 'cols', 'inner', 'by', 'distinct', 'python', 'rank', 'right', 'not'})]
-if _kw_cols:
-    import warnings
-    warnings.warn(
-        f"Table 'League' has columns that are Pivotal keywords: {_kw_cols}. "
-        "Use a 'python' block to reference them.",
-        UserWarning, stacklevel=2)
-#__pivotal__
-__table_name__ = 'League'
-#__pivotal__
-
 # [Cell 4] pivotal → pandas
-if 'League' not in locals() and 'League' not in globals(): raise NameError("name 'League' is not defined")
-if not isinstance(League, pd.DataFrame): raise TypeError('League is not a pandas DataFrame')
-league_names = League.copy()
+league_names = league.copy()
 #__pivotal__
 __table_name__ = 'league_names'
 #__pivotal__
 
 league_names = league_names.query('name in @big4')
 
-league_names = league_names.rename(columns={'id': 'league_id', 'name': 'League'})
+league_names = league_names.rename(columns={'id': 'league_id', 'name': 'league_name'})
 
-league_names = league_names.loc[:, ['league_id', 'League']]
+league_names = league_names.loc[:, ['league_id', 'league_name']]
 
-if 'Match' not in locals() and 'Match' not in globals(): raise NameError("name 'Match' is not defined")
-if not isinstance(Match, pd.DataFrame): raise TypeError('Match is not a pandas DataFrame')
 #__pivotal__
-__table_name__ = 'Match'
+__table_name__ = 'match'
 #__pivotal__
 
-Match = Match.merge(league_names, on=['league_id'], how='inner', )
+match = match.merge(league_names, on=['league_id'], how='inner', )
 
-Match['season_clean'] = Match['season'].str[:4] + '-' + Match['season'].str[-2:]
+match['season_clean'] = match['season'].str[:4] + '-' + match['season'].str[-2:]
 
-Match['total_goals'] = Match['home_team_goal'] + Match['away_team_goal']
+match['total_goals'] = match['home_team_goal'] + match['away_team_goal']
 
 # [Cell 5] pivotal → pandas
-if 'Match' not in locals() and 'Match' not in globals(): raise NameError("name 'Match' is not defined")
-if not isinstance(Match, pd.DataFrame): raise TypeError('Match is not a pandas DataFrame')
-goal_summary = Match.copy()
+goal_summary = match.copy()
 #__pivotal__
 __table_name__ = 'goal_summary'
 #__pivotal__
+
+goal_summary = goal_summary.rename(columns={'league_name': 'League'})
 
 goal_summary = pd.pivot_table(goal_summary, values='total_goals', index='season_clean', columns='League', aggfunc={'total_goals': 'mean'}).reset_index()
 
@@ -81,14 +127,12 @@ globals()['_pivotal_charts']['goal_chart'] = {'fig': _ax.get_figure(), 'data': g
 goal_chart = _ax.get_figure()
 
 # [Cell 6] pivotal → pandas
-if 'Match' not in locals() and 'Match' not in globals(): raise NameError("name 'Match' is not defined")
-if not isinstance(Match, pd.DataFrame): raise TypeError('Match is not a pandas DataFrame')
 #__pivotal__
-__table_name__ = 'Match'
+__table_name__ = 'match'
 #__pivotal__
 
 import matplotlib.pyplot as plt
-goal_chart2_df = Match.pivot_table(index='season_clean', columns='League', values='total_goals', aggfunc='mean')
+goal_chart2_df = match.pivot_table(index='season_clean', columns='league_name', values='total_goals', aggfunc='mean')
 goal_chart2_df.columns = [str(c) for c in goal_chart2_df.columns]
 goal_chart2_df = goal_chart2_df.reset_index()
 _pivot_y = [c for c in goal_chart2_df.columns if c != 'season_clean']
@@ -100,8 +144,6 @@ if '_pivotal_charts' not in globals(): globals()['_pivotal_charts'] = {}
 globals()['_pivotal_charts']['goal_chart2'] = {'fig': goal_chart2, 'data': goal_chart2_df.copy()}
 
 # [Cell 7] pivotal → pandas
-if 'goal_summary' not in locals() and 'goal_summary' not in globals(): raise NameError("name 'goal_summary' is not defined")
-if not isinstance(goal_summary, pd.DataFrame): raise TypeError('goal_summary is not a pandas DataFrame')
 #__pivotal__
 __table_name__ = 'goal_summary'
 #__pivotal__
@@ -132,24 +174,14 @@ from IPython.display import display as _ipyd, HTML as _ipyHTML
 _ipyd(_ipyHTML(_gt_viewer_html))
 
 # [Cell 8] pivotal → pandas
-import sqlite3 as _sqlite3
-with _sqlite3.connect('database.sqlite') as _conn:
-    Team = pd.read_sql('SELECT * FROM Team', _conn)
-_kw_cols = [c for c in Team.columns if c.lower() in frozenset({'avg', 'all', 'exclude', 'drop', 'rows', 'merge', 'rename', 'filter', 'table', 'agg', 'on', 'endswith', 'false', 'save', 'median', 'where', 'unpivot', 'load', 'left', 'sum', 'rolling', 'and', 'dropna', 'select', 'max', 'or', 'true', 'contains', 'cummax', 'fillna', 'cummean', 'sort', 'from', 'order', 'apply', 'in', 'group', 'min', 'concat', 'include', 'cumsum', 'cummin', 'std', 'pivot', 'none', 'asc', 'between', 'desc', 'outer', 'startswith', 'lead', 'as', 'mean', 'lag', 'plot', 'count', 'cols', 'inner', 'by', 'distinct', 'python', 'rank', 'right', 'not'})]
-if _kw_cols:
-    import warnings
-    warnings.warn(
-        f"Table 'Team' has columns that are Pivotal keywords: {_kw_cols}. "
-        "Use a 'python' block to reference them.",
-        UserWarning, stacklevel=2)
 #__pivotal__
-__table_name__ = 'Team'
+__table_name__ = 'team'
 #__pivotal__
 
+team = team.loc[:, ['team_api_id', 'team_long_name']]
+
 # [Cell 9] pivotal → pandas
-if 'Match' not in locals() and 'Match' not in globals(): raise NameError("name 'Match' is not defined")
-if not isinstance(Match, pd.DataFrame): raise TypeError('Match is not a pandas DataFrame')
-win_summary = Match.copy()
+win_summary = match.copy()
 #__pivotal__
 __table_name__ = 'win_summary'
 #__pivotal__
@@ -161,35 +193,33 @@ win_summary['winner_id'] = np.select(
     default=None,
 )
 
-win_summary = win_summary.merge(Team, how='left', left_on='winner_id', right_on='team_api_id')
+win_summary = win_summary.merge(team, how='left', left_on='winner_id', right_on='team_api_id')
 
-win_summary['wins'] = win_summary.eval('1')
+win_summary['wins'] = 1
 
-win_summary = win_summary.groupby(['team_long_name', 'League']).agg({'wins': 'sum'}).reset_index()
+win_summary = win_summary.groupby(['team_long_name', 'league_name']).agg({'wins': 'sum'}).reset_index()
 
 win_summary = win_summary.dropna()
 
-win_summary = win_summary.loc[:, ['team_long_name', 'League', 'wins']].rename(columns={'team_long_name': 'Team', 'wins': 'Wins'})
+win_summary = win_summary.loc[:, ['team_long_name', 'league_name', 'wins']].rename(columns={'team_long_name': 'Team', 'wins': 'Wins'})
 
 win_summary = win_summary.sort_values(['Wins'], ascending=[True])
 
 win_summary = win_summary.query('Wins > 50')
 
 # [Cell 10] pivotal → pandas
-if 'win_summary' not in locals() and 'win_summary' not in globals(): raise NameError("name 'win_summary' is not defined")
-if not isinstance(win_summary, pd.DataFrame): raise TypeError('win_summary is not a pandas DataFrame')
 #__pivotal__
 __table_name__ = 'win_summary'
 #__pivotal__
 
 import matplotlib.pyplot as plt
-_by_vals = win_summary['League'].unique()
+_by_vals = win_summary['league_name'].unique()
 _n_cols = 2
 _n_rows = -(-len(_by_vals) // _n_cols)
 _fig, _axes = plt.subplots(_n_rows, _n_cols, figsize=(7 * _n_cols, 5 * _n_rows))
 _axes = _axes.flatten() if hasattr(_axes, 'flatten') else [_axes]
 for _i, _val in enumerate(_by_vals):
-    win_summary[win_summary['League'] == _val].plot(kind='barh', x='Team', y='Wins', legend=False, ylabel='', ax=_axes[_i], title=str(_val))
+    win_summary[win_summary['league_name'] == _val].plot(kind='barh', x='Team', y='Wins', legend=False, ylabel='', ax=_axes[_i], title=str(_val))
 for _ax in _axes[len(_by_vals):]:
     _ax.set_visible(False)
 plt.tight_layout()
@@ -198,9 +228,7 @@ globals()['_pivotal_charts']['win_plot'] = {'fig': _fig, 'data': win_summary.cop
 win_plot = _fig
 
 # [Cell 11] pivotal → pandas
-if 'Match' not in locals() and 'Match' not in globals(): raise NameError("name 'Match' is not defined")
-if not isinstance(Match, pd.DataFrame): raise TypeError('Match is not a pandas DataFrame')
-homematch = Match.copy()
+homematch = match.copy()
 #__pivotal__
 __table_name__ = 'homematch'
 #__pivotal__
@@ -211,25 +239,26 @@ homematch = homematch.loc[:, ['home_team_api_id', 'date', 'GD']].rename(columns=
 
 homematch = homematch.sort_values(['team_id', 'date'], ascending=[True, True])
 
-if 'Match' not in locals() and 'Match' not in globals(): raise NameError("name 'Match' is not defined")
-if not isinstance(Match, pd.DataFrame): raise TypeError('Match is not a pandas DataFrame')
-ha_match = Match.copy()
+home_away_match = match.copy()
 #__pivotal__
-__table_name__ = 'ha_match'
+__table_name__ = 'home_away_match'
 #__pivotal__
 
-ha_match['GD'] = ha_match.eval('away_team_goal - home_team_goal')
+home_away_match['GD'] = home_away_match.eval('away_team_goal - home_team_goal')
 
-ha_match = ha_match.loc[:, ['away_team_api_id', 'date', 'GD']].rename(columns={'away_team_api_id': 'team_id'})
+home_away_match = home_away_match.loc[:, ['away_team_api_id', 'date', 'GD']].rename(columns={'away_team_api_id': 'team_id'})
 
-ha_match = ha_match.sort_values(['team_id', 'date'], ascending=[True, True])
+home_away_match = home_away_match.sort_values(['team_id', 'date'], ascending=[True, True])
 
-ha_match = pd.concat([ha_match, homematch], ignore_index=True)
+home_away_match = pd.concat([home_away_match, homematch], ignore_index=True)
 
-ha_match = ha_match.sort_values('date')
-ha_match['pastgame_GD'] = ha_match.groupby(['team_id'])['GD'].transform(lambda x: x.rolling(4).mean())
+home_away_match = home_away_match.sort_values('date')
+home_away_match['GD_lag'] = home_away_match.groupby(['team_id'])['GD'].shift(1)
 
-ha_match = ha_match.dropna()
+home_away_match = home_away_match.sort_values('date')
+home_away_match['pastgame_GD'] = home_away_match.groupby(['team_id'])['GD_lag'].transform(lambda x: x.rolling(4).mean())
+
+home_away_match = home_away_match.dropna()
 
 del homematch
 
@@ -238,7 +267,7 @@ del homematch
 
 from statsmodels.nonparametric.smoothers_lowess import lowess
 
-result = lowess(ha_match["GD"], ha_match["pastgame_GD"], frac=0.2)
+result = lowess(home_away_match["GD"], home_away_match["pastgame_GD"], frac=0.2)
 fitted = pd.DataFrame(result, columns=["pastgame_GD", "Fitted"])
 # Polars version
 #fitted = pl.from_numpy(result, schema=["pastgame_GD", "Fitted"]) 
@@ -246,20 +275,16 @@ fitted = pd.DataFrame(result, columns=["pastgame_GD", "Fitted"])
 pivotal.update()
 
 # [Cell 13] pivotal → pandas
-if 'ha_match' not in locals() and 'ha_match' not in globals(): raise NameError("name 'ha_match' is not defined")
-if not isinstance(ha_match, pd.DataFrame): raise TypeError('ha_match is not a pandas DataFrame')
 #__pivotal__
-__table_name__ = 'ha_match'
+__table_name__ = 'home_away_match'
 #__pivotal__
 
 import matplotlib.pyplot as plt
-_ax = ha_match.plot(kind='scatter', title='Prior form vs match outcome', x='pastgame_GD', y='GD', xlabel='Past four games mean goal difference', ylabel='Goal difference')
+_ax = home_away_match.plot(kind='scatter', title='Prior form vs match outcome', x='pastgame_GD', y='GD', xlabel='Past four games mean goal difference', ylabel='Next game goal difference')
 if '_pivotal_charts' not in globals(): globals()['_pivotal_charts'] = {}
-globals()['_pivotal_charts']['form_model_chart'] = {'fig': _ax.get_figure(), 'data': ha_match.copy()}
+globals()['_pivotal_charts']['form_model_chart'] = {'fig': _ax.get_figure(), 'data': home_away_match.copy()}
 form_model_chart = _ax.get_figure()
 
-if 'fitted' not in locals() and 'fitted' not in globals(): raise NameError("name 'fitted' is not defined")
-if not isinstance(fitted, pd.DataFrame): raise TypeError('fitted is not a pandas DataFrame')
 #__pivotal__
 __table_name__ = 'fitted'
 #__pivotal__
@@ -277,3 +302,19 @@ _ax.set_ylabel(_prev_ylabel)
 # [Cell 14] pivotal → pandas
 from pivotal.package import Package as _PivotalPackage
 _PivotalPackage.export('football_demo', globals(), fmt='csv', chart_fmt='png')
+
+# [Cell 17] pivotal → pandas
+#__pivotal__
+__table_name__ = 'match'
+#__pivotal__
+
+import matplotlib.pyplot as plt
+homeVaway_df = match.pivot_table(index='home_team_goal', columns='league_name', values='away_team_goal', aggfunc='mean')
+homeVaway_df.columns = [str(c) for c in homeVaway_df.columns]
+homeVaway_df = homeVaway_df.reset_index()
+_pivot_y = [c for c in homeVaway_df.columns if c != 'home_team_goal']
+_ax = homeVaway_df.plot(x='home_team_goal', y=_pivot_y, kind='line')
+_ax.set_ylabel('away_team_goal')
+homeVaway = _ax.get_figure()
+if '_pivotal_charts' not in globals(): globals()['_pivotal_charts'] = {}
+globals()['_pivotal_charts']['homeVaway'] = {'fig': homeVaway, 'data': homeVaway_df.copy()}

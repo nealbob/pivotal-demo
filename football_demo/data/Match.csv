@@ -1,4 +1,4 @@
-id,country_id,league_id,season,stage,date,match_api_id,home_team_api_id,away_team_api_id,home_team_goal,away_team_goal,League,season_clean,total_goals
+id,country_id,league_id,season,stage,date,match_api_id,home_team_api_id,away_team_api_id,home_team_goal,away_team_goal,league_name,season_clean,total_goals
 1729,1729,1729,2008/2009,1,2008-08-17 00:00:00,489042,10260,10261,1,1,England Premier League,2008-09,2
 1730,1729,1729,2008/2009,1,2008-08-16 00:00:00,489043,9825,8659,1,0,England Premier League,2008-09,1
 1731,1729,1729,2008/2009,1,2008-08-16 00:00:00,489044,8472,8650,0,1,England Premier League,2008-09,1

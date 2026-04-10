@@ -2,8 +2,8 @@
   "name": "football_demo",
   "resources": [
     {
-      "name": "Match",
-      "path": "data/Match.csv",
+      "name": "match",
+      "path": "data/match.csv",
       "mediatype": "text/csv",
       "schema": {
         "fields": [
@@ -52,7 +52,7 @@
             "type": "integer"
           },
           {
-            "name": "League",
+            "name": "league_name",
             "type": "string"
           },
           {
@@ -67,8 +67,8 @@
       }
     },
     {
-      "name": "League",
-      "path": "data/League.csv",
+      "name": "league",
+      "path": "data/league.csv",
       "mediatype": "text/csv",
       "schema": {
         "fields": [
@@ -98,7 +98,7 @@
             "type": "integer"
           },
           {
-            "name": "League",
+            "name": "league_name",
             "type": "string"
           }
         ]
@@ -163,29 +163,17 @@
       }
     },
     {
-      "name": "Team",
-      "path": "data/Team.csv",
+      "name": "team",
+      "path": "data/team.csv",
       "mediatype": "text/csv",
       "schema": {
         "fields": [
-          {
-            "name": "id",
-            "type": "integer"
-          },
           {
             "name": "team_api_id",
             "type": "integer"
           },
           {
-            "name": "team_fifa_api_id",
-            "type": "number"
-          },
-          {
             "name": "team_long_name",
-            "type": "string"
-          },
-          {
-            "name": "team_short_name",
             "type": "string"
           }
         ]
@@ -202,7 +190,7 @@
             "type": "string"
           },
           {
-            "name": "League",
+            "name": "league_name",
             "type": "string"
           },
           {
@@ -213,8 +201,8 @@
       }
     },
     {
-      "name": "ha_match",
-      "path": "data/ha_match.csv",
+      "name": "home_away_match",
+      "path": "data/home_away_match.csv",
       "mediatype": "text/csv",
       "schema": {
         "fields": [
@@ -229,6 +217,10 @@
           {
             "name": "GD",
             "type": "integer"
+          },
+          {
+            "name": "GD_lag",
+            "type": "number"
           },
           {
             "name": "pastgame_GD",
@@ -338,7 +330,7 @@
             "type": "string"
           },
           {
-            "name": "League",
+            "name": "league_name",
             "type": "string"
           },
           {
@@ -370,6 +362,10 @@
           {
             "name": "GD",
             "type": "integer"
+          },
+          {
+            "name": "GD_lag",
+            "type": "number"
           },
           {
             "name": "pastgame_GD",

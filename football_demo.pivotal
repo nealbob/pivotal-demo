@@ -3,29 +3,27 @@
 # [Cell 1]
 python
 import pivotal
-%pivotal_set canvas=a4, viewer_font=0.9
-#pivotal_set backend=duckdb   # Use DuckDB/SQL engine instead of Pandas
+%pivotal_set canvas=a4, viewer_font=0.9, backend=pandas
 end
 
 # [Cell 2]
+from "database.sqlite"
+    load Match as match, League as league, Team as team
+
+# Data can also be loaded via gui [alt + L] / pivotal.load_gui()
+
+# [Cell 3]
 python
 big4 = ["England Premier League", "Spain LIGA BBVA", "Germany 1. Bundesliga", "Italy Serie A"]
 end
 
-# [Cell 3]
-load Match "database.sqlite"
-load League "database.sqlite"
-
-# Data can also be loaded via gui 
-# pivotal.load_gui()
-
 # [Cell 4]
-df league_names from League
+with league as league_names
     filter name in :big4
-    rename id as league_id, name as League
-    select league_id, League
+    rename id as league_id, name as league_name
+    select league_id, league_name
 
-df Match
+with match
     inner merge league_names on league_id
     season_clean = left(season,4) + "-" + right(season,2)
     total_goals = home_team_goal + away_team_goal
@@ -33,7 +31,8 @@ df Match
 # [Cell 5]
 # Mean scoring level by league
 
-df goal_summary from Match
+with match as goal_summary
+    rename league_name as League
     pivot
         agg mean total_goals
         rows season_clean
@@ -42,18 +41,19 @@ df goal_summary from Match
         x season_clean "Season"
         y :big4 "Mean goals"
 
+# [Cell 6]
 # Same chart but with agg plot (built in pivot)
-df Match  
+with match  
     agg plot line goal_chart2
         x season_clean "Season"
         y mean total_goals "Mean goals"
-        by League           # single plot with legend if only 1 y var
+        by league_name           # single plot with legend if only 1 y var
 
 # plots can also be generated via gui
 # pivotal.plot_gui()
 
-# [Cell 6]
-df goal_summary  # Optional as this df allready has focus
+# [Cell 7]
+with goal_summary  
     table goal_table
         title "Mean goals scored per game by league and season"
         format number 2
@@ -63,73 +63,93 @@ df goal_summary  # Optional as this df allready has focus
         font "Calibri"
         show
 
-# [Cell 7]
-load Team "database.sqlite"
+# [Cell 8]
+with team
     select team_api_id, team_long_name
 
-# [Cell 8]
+# [Cell 9]
 # Teams with most wins
 
-df win_summary from Match
-    winner_id = home_team_api_id 
-        where home_team_goal > away_team_goal
-    winner_id = away_team_api_id
-        where home_team_goal < away_team_goal
-    left merge Team
+with match as win_summary
+    winner_id = 
+        where home_team_goal > away_team_goal: home_team_api_id 
+        where home_team_goal < away_team_goal: away_team_api_id
+    left merge team
          left_on winner_id
          right_on team_api_id
     wins = 1
-    group by team_long_name, League
+    group by team_long_name, league_name
         agg sum wins
-    select team_long_name as Team, League, wins as Wins 
+    dropna
+    select team_long_name as Team, league_name, wins as Wins 
     sort Wins asc
     filter Wins > 50
 
-# [Cell 9]
-plot barh win_plot
-    x Team 
-    y Wins ""
-    by League
-    legend False
-
 # [Cell 10]
-# Combine home and away results 
-df homematch from Match
+with win_summary
+    plot barh win_plot
+        x Team 
+        y Wins ""
+        by league_name
+        legend False
+
+# [Cell 11]
+# Combine home and away result, add lag moving average
+with match as homematch
     GD = home_team_goal - away_team_goal
     select home_team_api_id as team_id, date, GD
     sort team_id, date
 
-df ha_match from Match
+with match as home_away_match 
     GD = away_team_goal - home_team_goal
     select away_team_api_id as team_id, date, GD
     sort team_id, date
     concat homematch
-    rolling mean GD 4 as pastgame_GD 
+    lag GD 1 as GD_lag
         order date
-        by team_id 
+        by team_id
+    rolling mean GD_lag 4 as pastgame_GD
+        order date
+        by team_id
+    dropna 
 
 delete homematch
 
-# [Cell 11]
+# [Cell 12]
 python
-# Switch to python if convenient
+# Switch to Python for some analysis
 
-ha_match['form'] = pd.qcut(ha_match['pastgame_GD'], q=5)
+from statsmodels.nonparametric.smoothers_lowess import lowess
 
-# Update object viewer and explorer panels
+result = lowess(home_away_match["GD"], home_away_match["pastgame_GD"], frac=0.2)
+fitted = pd.DataFrame(result, columns=["pastgame_GD", "Fitted"])
+# Polars version
+#fitted = pl.from_numpy(result, schema=["pastgame_GD", "Fitted"]) 
+
 pivotal.update()
 end
 
-# [Cell 12]
-# Link between past team form and match outcomes
-df ha_match 
-    group by form
-        agg mean GD
-    plot bar form_chart
-        title "Prior form vs match outcome"
-        x form "Past four games mean goal difference"
-        y GD "Mean goal difference"
-        legend False
-
 # [Cell 13]
+# Link between past team form and match outcomes
+with home_away_match 
+    plot scatter form_model_chart
+        title "Prior form vs match outcome"
+        x pastgame_GD "Past four games mean goal difference"
+        y GD  "Next game goal difference"
+        
+with fitted
+    plot line on form_model_chart
+        x pastgame_GD 
+        y Fitted 
+        c="red"
+
+# [Cell 14]
 save "football_demo"
+
+# [Cell 17]
+with match
+filter home_team_goal < 8
+pivot plot line homeVaway
+  x home_team_goal "Home goals"
+  y mean away_team_goal "Mean away goals"
+  by league_name
