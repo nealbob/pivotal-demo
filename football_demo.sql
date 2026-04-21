@@ -158,13 +158,3 @@ SELECT * FROM _cte_1_fitted
 
 # [Cell 14] pivotal → sql
 -- [skipped: no SQL generator for 'save']
-
-# [Cell 17] pivotal → sql
-WITH
-_cte_0_match AS (
-  SELECT * FROM match
-),
-_cte_1_match AS (
-  SELECT * FROM _cte_0_match WHERE home_team_goal < 8
-)
-SELECT * FROM _cte_1_match

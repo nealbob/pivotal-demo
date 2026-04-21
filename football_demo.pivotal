@@ -10,8 +10,6 @@ end
 from "database.sqlite"
     load Match as match, League as league, Team as team
 
-# Data can also be loaded via gui [alt + L] / pivotal.load_gui()
-
 # [Cell 3]
 python
 big4 = ["England Premier League", "Spain LIGA BBVA", "Germany 1. Bundesliga", "Italy Serie A"]
@@ -72,8 +70,8 @@ with team
 
 with match as win_summary
     winner_id = 
-        where home_team_goal > away_team_goal: home_team_api_id 
-        where home_team_goal < away_team_goal: away_team_api_id
+        where home_team_goal > away_team_goal; home_team_api_id 
+        where home_team_goal < away_team_goal; away_team_api_id
     left merge team
          left_on winner_id
          right_on team_api_id
@@ -145,11 +143,3 @@ with fitted
 
 # [Cell 14]
 save "football_demo"
-
-# [Cell 17]
-with match
-filter home_team_goal < 8
-pivot plot line homeVaway
-  x home_team_goal "Home goals"
-  y mean away_team_goal "Mean away goals"
-  by league_name

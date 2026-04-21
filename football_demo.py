@@ -29,7 +29,7 @@ match.columns = _pvt_new_cols
 if _pvt_renamed:
     import warnings
     warnings.warn(f"[Pivotal] Column(s) renamed in 'match': {_pvt_renamed}", UserWarning, stacklevel=2)
-_kw_cols = [c for c in match.columns if c.lower() in frozenset({'apply', 'rename', 'avg', 'agg', 'min', 'merge', 'plot', 'none', 'concat', 'distinct', 'max', 'rows', 'pivot', 'wavg', 'exclude', 'desc', 'group', 'all', 'as', 'cummax', 'by', 'std', 'between', 'false', 'asc', 'with', 'select', 'and', 'drop', 'dropna', 'cast', 'cummin', 'delete', 'true', 'lag', 'cols', 'order', 'unpivot', 'cumsum', 'load', 'cummean', 'inner', 'python', 'intersect', 'on', 'right', 'startswith', 'from', 'not', 'sum', 'count', 'where', 'left', 'save', 'endswith', 'fillna', 'mean', 'filter', 'outer', 'rank', 'wmean', 'or', 'table', 'in', 'include', 'sort', 'rolling', 'lead', 'median', 'contains'})]
+_kw_cols = [c for c in match.columns if c.lower() in frozenset({'fillna', 'sort', 'desc', 'python', 'sum', 'merge', 'median', 'group', 'right', 'select', 'endswith', 'on', 'concat', 'max', 'count', 'order', 'startswith', 'left', 'false', 'true', 'std', 'all', 'outer', 'mean', 'lag', 'by', 'intersect', 'contains', 'agg', 'unpivot', 'rank', 'or', 'load', 'exclude', 'min', 'delete', 'cumsum', 'inner', 'cols', 'where', 'between', 'dropna', 'in', 'rows', 'filter', 'cummax', 'rolling', 'rename', 'asc', 'and', 'lead', 'wavg', 'cast', 'cummean', 'table', 'drop', 'none', 'from', 'include', 'wmean', 'avg', 'cummin', 'with', 'as', 'pivot', 'distinct', 'not', 'save', 'plot', 'apply'})]
 if _kw_cols:
     import warnings
     warnings.warn(f"Table 'match' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
@@ -53,7 +53,7 @@ league.columns = _pvt_new_cols
 if _pvt_renamed:
     import warnings
     warnings.warn(f"[Pivotal] Column(s) renamed in 'league': {_pvt_renamed}", UserWarning, stacklevel=2)
-_kw_cols = [c for c in league.columns if c.lower() in frozenset({'apply', 'rename', 'avg', 'agg', 'min', 'merge', 'plot', 'none', 'concat', 'distinct', 'max', 'rows', 'pivot', 'wavg', 'exclude', 'desc', 'group', 'all', 'as', 'cummax', 'by', 'std', 'between', 'false', 'asc', 'with', 'select', 'and', 'drop', 'dropna', 'cast', 'cummin', 'delete', 'true', 'lag', 'cols', 'order', 'unpivot', 'cumsum', 'load', 'cummean', 'inner', 'python', 'intersect', 'on', 'right', 'startswith', 'from', 'not', 'sum', 'count', 'where', 'left', 'save', 'endswith', 'fillna', 'mean', 'filter', 'outer', 'rank', 'wmean', 'or', 'table', 'in', 'include', 'sort', 'rolling', 'lead', 'median', 'contains'})]
+_kw_cols = [c for c in league.columns if c.lower() in frozenset({'fillna', 'sort', 'desc', 'python', 'sum', 'merge', 'median', 'group', 'right', 'select', 'endswith', 'on', 'concat', 'max', 'count', 'order', 'startswith', 'left', 'false', 'true', 'std', 'all', 'outer', 'mean', 'lag', 'by', 'intersect', 'contains', 'agg', 'unpivot', 'rank', 'or', 'load', 'exclude', 'min', 'delete', 'cumsum', 'inner', 'cols', 'where', 'between', 'dropna', 'in', 'rows', 'filter', 'cummax', 'rolling', 'rename', 'asc', 'and', 'lead', 'wavg', 'cast', 'cummean', 'table', 'drop', 'none', 'from', 'include', 'wmean', 'avg', 'cummin', 'with', 'as', 'pivot', 'distinct', 'not', 'save', 'plot', 'apply'})]
 if _kw_cols:
     import warnings
     warnings.warn(f"Table 'league' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
@@ -77,7 +77,7 @@ team.columns = _pvt_new_cols
 if _pvt_renamed:
     import warnings
     warnings.warn(f"[Pivotal] Column(s) renamed in 'team': {_pvt_renamed}", UserWarning, stacklevel=2)
-_kw_cols = [c for c in team.columns if c.lower() in frozenset({'apply', 'rename', 'avg', 'agg', 'min', 'merge', 'plot', 'none', 'concat', 'distinct', 'max', 'rows', 'pivot', 'wavg', 'exclude', 'desc', 'group', 'all', 'as', 'cummax', 'by', 'std', 'between', 'false', 'asc', 'with', 'select', 'and', 'drop', 'dropna', 'cast', 'cummin', 'delete', 'true', 'lag', 'cols', 'order', 'unpivot', 'cumsum', 'load', 'cummean', 'inner', 'python', 'intersect', 'on', 'right', 'startswith', 'from', 'not', 'sum', 'count', 'where', 'left', 'save', 'endswith', 'fillna', 'mean', 'filter', 'outer', 'rank', 'wmean', 'or', 'table', 'in', 'include', 'sort', 'rolling', 'lead', 'median', 'contains'})]
+_kw_cols = [c for c in team.columns if c.lower() in frozenset({'fillna', 'sort', 'desc', 'python', 'sum', 'merge', 'median', 'group', 'right', 'select', 'endswith', 'on', 'concat', 'max', 'count', 'order', 'startswith', 'left', 'false', 'true', 'std', 'all', 'outer', 'mean', 'lag', 'by', 'intersect', 'contains', 'agg', 'unpivot', 'rank', 'or', 'load', 'exclude', 'min', 'delete', 'cumsum', 'inner', 'cols', 'where', 'between', 'dropna', 'in', 'rows', 'filter', 'cummax', 'rolling', 'rename', 'asc', 'and', 'lead', 'wavg', 'cast', 'cummean', 'table', 'drop', 'none', 'from', 'include', 'wmean', 'avg', 'cummin', 'with', 'as', 'pivot', 'distinct', 'not', 'save', 'plot', 'apply'})]
 if _kw_cols:
     import warnings
     warnings.warn(f"Table 'team' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
@@ -302,19 +302,3 @@ _ax.set_ylabel(_prev_ylabel)
 # [Cell 14] pivotal → pandas
 from pivotal.package import Package as _PivotalPackage
 _PivotalPackage.export('football_demo', globals(), fmt='csv', chart_fmt='png')
-
-# [Cell 17] pivotal → pandas
-#__pivotal__
-__table_name__ = 'match'
-#__pivotal__
-
-import matplotlib.pyplot as plt
-homeVaway_df = match.pivot_table(index='home_team_goal', columns='league_name', values='away_team_goal', aggfunc='mean')
-homeVaway_df.columns = [str(c) for c in homeVaway_df.columns]
-homeVaway_df = homeVaway_df.reset_index()
-_pivot_y = [c for c in homeVaway_df.columns if c != 'home_team_goal']
-_ax = homeVaway_df.plot(x='home_team_goal', y=_pivot_y, kind='line')
-_ax.set_ylabel('away_team_goal')
-homeVaway = _ax.get_figure()
-if '_pivotal_charts' not in globals(): globals()['_pivotal_charts'] = {}
-globals()['_pivotal_charts']['homeVaway'] = {'fig': homeVaway, 'data': homeVaway_df.copy()}

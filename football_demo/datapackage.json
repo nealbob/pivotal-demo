@@ -88,6 +88,23 @@
       }
     },
     {
+      "name": "team",
+      "path": "data/team.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "team_api_id",
+            "type": "integer"
+          },
+          {
+            "name": "team_long_name",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
       "name": "league_names",
       "path": "data/league_names.csv",
       "mediatype": "text/csv",
@@ -158,23 +175,6 @@
           {
             "name": "Spain LIGA BBVA",
             "type": "number"
-          }
-        ]
-      }
-    },
-    {
-      "name": "team",
-      "path": "data/team.csv",
-      "mediatype": "text/csv",
-      "schema": {
-        "fields": [
-          {
-            "name": "team_api_id",
-            "type": "integer"
-          },
-          {
-            "name": "team_long_name",
-            "type": "string"
           }
         ]
       }
