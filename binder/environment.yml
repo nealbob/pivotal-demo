@@ -4,6 +4,7 @@ channels:
   - defaults
 dependencies:
   - python=3.11
+  - statsmodels
   - pip
   - pip:
       - jupyterlab>=4.5.4,<5
