@@ -4,7 +4,6 @@ import pandas as pd
 
 # [Cell 1]
 import pivotal
-%pivotal_set canvas=a4, viewer_font=0.9, backend=pandas
 
 # [Cell 2] pivotal → pandas
 import sqlite3 as _sqlite3
@@ -29,7 +28,7 @@ match.columns = _pvt_new_cols
 if _pvt_renamed:
     import warnings
     warnings.warn(f"[Pivotal] Column(s) renamed in 'match': {_pvt_renamed}", UserWarning, stacklevel=2)
-_kw_cols = [c for c in match.columns if c.lower() in frozenset({'fillna', 'sort', 'desc', 'python', 'sum', 'merge', 'median', 'group', 'right', 'select', 'endswith', 'on', 'concat', 'max', 'count', 'order', 'startswith', 'left', 'false', 'true', 'std', 'all', 'outer', 'mean', 'lag', 'by', 'intersect', 'contains', 'agg', 'unpivot', 'rank', 'or', 'load', 'exclude', 'min', 'delete', 'cumsum', 'inner', 'cols', 'where', 'between', 'dropna', 'in', 'rows', 'filter', 'cummax', 'rolling', 'rename', 'asc', 'and', 'lead', 'wavg', 'cast', 'cummean', 'table', 'drop', 'none', 'from', 'include', 'wmean', 'avg', 'cummin', 'with', 'as', 'pivot', 'distinct', 'not', 'save', 'plot', 'apply'})]
+_kw_cols = [c for c in match.columns if c.lower() in frozenset({'asc', 'wmean', 'check', 'rank', 'right', 'python', 'dropna', 'apply', 'agg', 'fillna', 'percentile', 'and', 'exclude', 'distinct', 'cast', 'on', 'cummax', 'sort', 'endswith', 'quantile', 'cummean', 'function', 'cummin', 'where', 'outer', 'lead', 'round', 'not', 'filter', 'false', 'all', 'drop', 'wavg', 'concat', 'mean', 'scalar', 'lag', 'left', 'max', 'with', 'inner', 'rows', 'assert', 'median', 'desc', 'cumsum', 'merge', 'select', 'dict', 'table', 'avg', 'startswith', 'unpivot', 'as', 'none', 'group', 'contains', 'min', 'map', 'from', 'list', 'intersect', 'load', 'return', 'for', 'or', 'include', 'save', 'delete', 'order', 'in', 'rename', 'true', 'rolling', 'by', 'plot', 'between', 'count', 'pivot', 'sum', 'bulk', 'std', 'cols'})]
 if _kw_cols:
     import warnings
     warnings.warn(f"Table 'match' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
@@ -53,7 +52,7 @@ league.columns = _pvt_new_cols
 if _pvt_renamed:
     import warnings
     warnings.warn(f"[Pivotal] Column(s) renamed in 'league': {_pvt_renamed}", UserWarning, stacklevel=2)
-_kw_cols = [c for c in league.columns if c.lower() in frozenset({'fillna', 'sort', 'desc', 'python', 'sum', 'merge', 'median', 'group', 'right', 'select', 'endswith', 'on', 'concat', 'max', 'count', 'order', 'startswith', 'left', 'false', 'true', 'std', 'all', 'outer', 'mean', 'lag', 'by', 'intersect', 'contains', 'agg', 'unpivot', 'rank', 'or', 'load', 'exclude', 'min', 'delete', 'cumsum', 'inner', 'cols', 'where', 'between', 'dropna', 'in', 'rows', 'filter', 'cummax', 'rolling', 'rename', 'asc', 'and', 'lead', 'wavg', 'cast', 'cummean', 'table', 'drop', 'none', 'from', 'include', 'wmean', 'avg', 'cummin', 'with', 'as', 'pivot', 'distinct', 'not', 'save', 'plot', 'apply'})]
+_kw_cols = [c for c in league.columns if c.lower() in frozenset({'asc', 'wmean', 'check', 'rank', 'right', 'python', 'dropna', 'apply', 'agg', 'fillna', 'percentile', 'and', 'exclude', 'distinct', 'cast', 'on', 'cummax', 'sort', 'endswith', 'quantile', 'cummean', 'function', 'cummin', 'where', 'outer', 'lead', 'round', 'not', 'filter', 'false', 'all', 'drop', 'wavg', 'concat', 'mean', 'scalar', 'lag', 'left', 'max', 'with', 'inner', 'rows', 'assert', 'median', 'desc', 'cumsum', 'merge', 'select', 'dict', 'table', 'avg', 'startswith', 'unpivot', 'as', 'none', 'group', 'contains', 'min', 'map', 'from', 'list', 'intersect', 'load', 'return', 'for', 'or', 'include', 'save', 'delete', 'order', 'in', 'rename', 'true', 'rolling', 'by', 'plot', 'between', 'count', 'pivot', 'sum', 'bulk', 'std', 'cols'})]
 if _kw_cols:
     import warnings
     warnings.warn(f"Table 'league' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
@@ -77,7 +76,7 @@ team.columns = _pvt_new_cols
 if _pvt_renamed:
     import warnings
     warnings.warn(f"[Pivotal] Column(s) renamed in 'team': {_pvt_renamed}", UserWarning, stacklevel=2)
-_kw_cols = [c for c in team.columns if c.lower() in frozenset({'fillna', 'sort', 'desc', 'python', 'sum', 'merge', 'median', 'group', 'right', 'select', 'endswith', 'on', 'concat', 'max', 'count', 'order', 'startswith', 'left', 'false', 'true', 'std', 'all', 'outer', 'mean', 'lag', 'by', 'intersect', 'contains', 'agg', 'unpivot', 'rank', 'or', 'load', 'exclude', 'min', 'delete', 'cumsum', 'inner', 'cols', 'where', 'between', 'dropna', 'in', 'rows', 'filter', 'cummax', 'rolling', 'rename', 'asc', 'and', 'lead', 'wavg', 'cast', 'cummean', 'table', 'drop', 'none', 'from', 'include', 'wmean', 'avg', 'cummin', 'with', 'as', 'pivot', 'distinct', 'not', 'save', 'plot', 'apply'})]
+_kw_cols = [c for c in team.columns if c.lower() in frozenset({'asc', 'wmean', 'check', 'rank', 'right', 'python', 'dropna', 'apply', 'agg', 'fillna', 'percentile', 'and', 'exclude', 'distinct', 'cast', 'on', 'cummax', 'sort', 'endswith', 'quantile', 'cummean', 'function', 'cummin', 'where', 'outer', 'lead', 'round', 'not', 'filter', 'false', 'all', 'drop', 'wavg', 'concat', 'mean', 'scalar', 'lag', 'left', 'max', 'with', 'inner', 'rows', 'assert', 'median', 'desc', 'cumsum', 'merge', 'select', 'dict', 'table', 'avg', 'startswith', 'unpivot', 'as', 'none', 'group', 'contains', 'min', 'map', 'from', 'list', 'intersect', 'load', 'return', 'for', 'or', 'include', 'save', 'delete', 'order', 'in', 'rename', 'true', 'rolling', 'by', 'plot', 'between', 'count', 'pivot', 'sum', 'bulk', 'std', 'cols'})]
 if _kw_cols:
     import warnings
     warnings.warn(f"Table 'team' has columns that are Pivotal keywords: {_kw_cols}. Use a 'python' block to reference them.", UserWarning, stacklevel=2)
@@ -108,7 +107,7 @@ match = match.merge(league_names, on=['league_id'], how='inner', )
 
 match['season_clean'] = match['season'].str[:4] + '-' + match['season'].str[-2:]
 
-match['total_goals'] = match['home_team_goal'] + match['away_team_goal']
+match['total_goals'] = (match['home_team_goal'] + match['away_team_goal'])
 
 # [Cell 5] pivotal → pandas
 goal_summary = match.copy()
@@ -121,10 +120,12 @@ goal_summary = goal_summary.rename(columns={'league_name': 'League'})
 goal_summary = pd.pivot_table(goal_summary, values='total_goals', index='season_clean', columns='League', aggfunc={'total_goals': 'mean'}).reset_index()
 
 import matplotlib.pyplot as plt
-_ax = goal_summary.plot(kind='line', x='season_clean', y=big4, xlabel='Season', ylabel='Mean goals')
+_ax = goal_summary.plot(kind='line', x='season_clean', y=big4)
 if '_pivotal_charts' not in globals(): globals()['_pivotal_charts'] = {}
 globals()['_pivotal_charts']['goal_chart'] = {'fig': _ax.get_figure(), 'data': goal_summary.copy()}
 goal_chart = _ax.get_figure()
+_ax.set_xlabel('Season')
+_ax.set_ylabel('Mean goals')
 
 # [Cell 6] pivotal → pandas
 #__pivotal__
@@ -137,9 +138,9 @@ goal_chart2_df.columns = [str(c) for c in goal_chart2_df.columns]
 goal_chart2_df = goal_chart2_df.reset_index()
 _pivot_y = [c for c in goal_chart2_df.columns if c != 'season_clean']
 _ax = goal_chart2_df.plot(x='season_clean', y=_pivot_y, kind='line')
-_ax.set_ylabel('Mean goals')
 goal_chart2 = _ax.get_figure()
 _ax.set_xlabel('Season')
+_ax.set_ylabel('Mean goals')
 if '_pivotal_charts' not in globals(): globals()['_pivotal_charts'] = {}
 globals()['_pivotal_charts']['goal_chart2'] = {'fig': goal_chart2, 'data': goal_chart2_df.copy()}
 
@@ -189,7 +190,7 @@ __table_name__ = 'win_summary'
 import numpy as np
 win_summary['winner_id'] = np.select(
     [win_summary.eval('home_team_goal > away_team_goal'), win_summary.eval('home_team_goal < away_team_goal')],
-    [win_summary.eval('home_team_api_id'), win_summary.eval('away_team_api_id')],
+    [win_summary['home_team_api_id'], win_summary['away_team_api_id']],
     default=None,
 )
 
@@ -219,7 +220,8 @@ _n_rows = -(-len(_by_vals) // _n_cols)
 _fig, _axes = plt.subplots(_n_rows, _n_cols, figsize=(7 * _n_cols, 5 * _n_rows))
 _axes = _axes.flatten() if hasattr(_axes, 'flatten') else [_axes]
 for _i, _val in enumerate(_by_vals):
-    win_summary[win_summary['league_name'] == _val].plot(kind='barh', x='Team', y='Wins', legend=False, ylabel='', ax=_axes[_i], title=str(_val))
+    win_summary[win_summary['league_name'] == _val].plot(kind='barh', x='Team', y='Wins', legend=False, ax=_axes[_i], title=str(_val))
+    _axes[_i].set_xlabel('')
 for _ax in _axes[len(_by_vals):]:
     _ax.set_visible(False)
 plt.tight_layout()
@@ -233,7 +235,7 @@ homematch = match.copy()
 __table_name__ = 'homematch'
 #__pivotal__
 
-homematch['GD'] = homematch.eval('home_team_goal - away_team_goal')
+homematch['GD'] = (homematch['home_team_goal'] - homematch['away_team_goal'])
 
 homematch = homematch.loc[:, ['home_team_api_id', 'date', 'GD']].rename(columns={'home_team_api_id': 'team_id'})
 
@@ -244,7 +246,7 @@ home_away_match = match.copy()
 __table_name__ = 'home_away_match'
 #__pivotal__
 
-home_away_match['GD'] = home_away_match.eval('away_team_goal - home_team_goal')
+home_away_match['GD'] = (home_away_match['away_team_goal'] - home_away_match['home_team_goal'])
 
 home_away_match = home_away_match.loc[:, ['away_team_api_id', 'date', 'GD']].rename(columns={'away_team_api_id': 'team_id'})
 
@@ -280,10 +282,12 @@ __table_name__ = 'home_away_match'
 #__pivotal__
 
 import matplotlib.pyplot as plt
-_ax = home_away_match.plot(kind='scatter', title='Prior form vs match outcome', x='pastgame_GD', y='GD', xlabel='Past four games mean goal difference', ylabel='Next game goal difference')
+_ax = home_away_match.plot(kind='scatter', title='Prior form vs match outcome', x='pastgame_GD', y='GD', legend=False)
 if '_pivotal_charts' not in globals(): globals()['_pivotal_charts'] = {}
 globals()['_pivotal_charts']['form_model_chart'] = {'fig': _ax.get_figure(), 'data': home_away_match.copy()}
 form_model_chart = _ax.get_figure()
+_ax.set_xlabel('Past four games mean goal difference')
+_ax.set_ylabel('Next game goal difference')
 
 #__pivotal__
 __table_name__ = 'fitted'
@@ -301,4 +305,4 @@ _ax.set_ylabel(_prev_ylabel)
 
 # [Cell 14] pivotal → pandas
 from pivotal.package import Package as _PivotalPackage
-_PivotalPackage.export('football_demo', globals(), fmt='csv', chart_fmt='png')
+_PivotalPackage.export_to('football_demo', globals(), fmt='csv', chart_fmt='png')

@@ -3,7 +3,6 @@
 # [Cell 1]
 python
 import pivotal
-%pivotal_set canvas=a4, viewer_font=0.9, backend=pandas
 end
 
 # [Cell 2]
@@ -28,7 +27,6 @@ with match
 
 # [Cell 5]
 # Mean scoring level by league
-
 with match as goal_summary
     rename league_name as League
     pivot
@@ -40,9 +38,9 @@ with match as goal_summary
         y :big4 "Mean goals"
 
 # [Cell 6]
-# Same chart but with agg plot (built in pivot)
+# Same chart using pivot plot
 with match  
-    agg plot line goal_chart2
+    pivot plot line goal_chart2
         x season_clean "Season"
         y mean total_goals "Mean goals"
         by league_name           # single plot with legend if only 1 y var
@@ -69,9 +67,10 @@ with team
 # Teams with most wins
 
 with match as win_summary
-    winner_id = 
-        where home_team_goal > away_team_goal; home_team_api_id 
+    winner_id =
+        where home_team_goal > away_team_goal; home_team_api_id
         where home_team_goal < away_team_goal; away_team_api_id
+        else None
     left merge team
          left_on winner_id
          right_on team_api_id
@@ -79,7 +78,7 @@ with match as win_summary
     group by team_long_name, league_name
         agg sum wins
     dropna
-    select team_long_name as Team, league_name, wins as Wins 
+    select team_long_name as Team, league_name, wins as Wins
     sort Wins asc
     filter Wins > 50
 
@@ -142,4 +141,4 @@ with fitted
         c="red"
 
 # [Cell 14]
-save "football_demo"
+save package as "football_demo"
