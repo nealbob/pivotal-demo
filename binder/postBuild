@@ -3,8 +3,8 @@ set -e
 
 # Install pivotal core first, then the JupyterLab extension separately so pip
 # can resolve the dependency on the already-installed pivotal package.
-# Pinned to the Pivotal 0.6.0 release commit (tag v0.6.0).
-COMMIT=b388cdf99673167778975af4e48ce746f11141f5
+# Pinned to the Pivotal 0.7.0 release commit (tag v0.7.0).
+COMMIT=2e706fd928004cd8e01a7dc12f4becaab49d8bce
 pip install "pivotal-lang @ git+https://github.com/nealbob/pivotal-py.git@${COMMIT}"
 pip install "git+https://github.com/nealbob/pivotal-py.git@${COMMIT}#subdirectory=editors/jupyterlab"
 
